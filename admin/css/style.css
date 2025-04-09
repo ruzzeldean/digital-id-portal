@@ -1,0 +1,16 @@
+.wrapper {
+  width: 100%;
+  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+main {
+  background: var(--bs-gray-300);
+  width: inherit;
+  min-height: inherit;
+}
+
+.login-form {
+  width: 80%;
+  max-width: 21.875rem;
+}
