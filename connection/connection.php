@@ -6,9 +6,7 @@
 
   $con = mysqli_connect($host, $user, $pass, $database);
 
-  if ($con) {
-    echo "Connected.";
-  } else {
+  if (!$con) {
     echo "Error";
   }
 ?>
