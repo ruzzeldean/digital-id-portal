@@ -11,10 +11,11 @@
 
         <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Password">
 
-        <button class="btn btn-primary mb-3">Login</button>
+        <button id="login-button" class="btn btn-primary mb-3">Login</button>
       </div>
     </main>
   </div>
-  
-  <script src=""></script>
+
+  <script src="../assets/js/jquery.js"></script>
+  <script src="./js/script.js"></script>
 <?php include './includes/footer.php'; ?>
