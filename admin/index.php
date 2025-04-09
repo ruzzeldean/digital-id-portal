@@ -2,6 +2,7 @@
   <link rel="stylesheet" href="./css/style.css">
 <?php include './includes/header-close.php'; ?>
   
+  <div class="wrapper">
     <main class="d-flex justify-content-center align-items-center">
       <div class="login-form bg-light shadow rounded d-flex flex-column p-4">
         <h1 class="mb-4">Login</h1>
@@ -13,5 +14,7 @@
         <button class="btn btn-primary mb-3">Login</button>
       </div>
     </main>
-
+  </div>
+  
+  <script src=""></script>
 <?php include './includes/footer.php'; ?>
