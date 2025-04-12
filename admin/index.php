@@ -1,6 +1,4 @@
 <?php include './includes/header.php'; ?>
-  <link rel="stylesheet" href="./css/style.css">
-<?php include './includes/header-close.php'; ?>
   
   <div class="wrapper">
     <main class="d-flex justify-content-center align-items-center">
@@ -16,6 +14,4 @@
     </main>
   </div>
 
-  <script src="../assets/js/jquery.js"></script>
-  <script src="./js/script.js"></script>
 <?php include './includes/footer.php'; ?>
