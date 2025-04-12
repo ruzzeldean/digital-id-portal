@@ -19,7 +19,7 @@
 
       echo "success";
     } else {
-      echo "Incorrec username or password.";
+      echo "Incorrect username or password.";
     }
   } else {
     echo "Intruder.";
