@@ -1,7 +1,7 @@
 <?php include './includes/header-without-nav.php'; ?>
   
   <div class="wrapper">
-    <main class="d-flex justify-content-center align-items-center">
+    <main class="main-form d-flex justify-content-center align-items-center">
       <div class="login-form bg-light shadow rounded d-flex flex-column p-4">
         <h1 class="mb-4">Login</h1>
 
