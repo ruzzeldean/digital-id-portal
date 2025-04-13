@@ -4,7 +4,7 @@
   min-height: 100vh;
 }
 
-main {
+.main-form {
   background: var(--bs-gray-300);
   width: inherit;
   min-height: inherit;
