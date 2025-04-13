@@ -1,4 +1,4 @@
-<?php include './includes/header.php'; ?>
+<?php include './includes/header-without-nav.php'; ?>
   
   <div class="wrapper">
     <main class="d-flex justify-content-center align-items-center">
@@ -14,4 +14,4 @@
     </main>
   </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include './includes/footer-without-table-script.php'; ?>
