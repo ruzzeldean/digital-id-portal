@@ -26,15 +26,15 @@
               </nav>
 
               <nav class="nav flex-column">
-                <a class="nav-link text-white text-nowrap" href="./dashboard.php">
+                <a id="dashboard-link" class="nav-link text-white text-nowrap" href="./dashboard.php">
                   <i class="bi bi-speedometer"></i>
                   <span class="d-none d-sm-inline ms-2">Dashboard</span>
                 </a>
-                <a class="nav-link text-white text-nowrap" href="./id-applications.php">
+                <a id="id-applications-link" class="nav-link text-white text-nowrap" href="./id-applications.php">
                   <i class="bi bi-person-vcard"></i>
                   <span class="d-none d-sm-inline ms-2">ID Applications</span>
                 </a>
-                <a class="nav-link text-white text-nowrap" href="./admins.php">
+                <a id="admins-link" class="nav-link text-white text-nowrap" href="./admins.php">
                   <i class="bi bi-person-lines-fill"></i>
                   <span class="d-none d-sm-inline ms-2">Admins</span>
                 </a>
