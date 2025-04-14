@@ -1,0 +1,22 @@
+INSERT INTO citizens (email, password, first_name, middle_name,last_name, role_id) 
+VALUES
+('jose.delacruz@example.com', md5('jdelacruz'), 'Jose', 'Santos', 'Dela Cruz', 3),
+('maria.reyes@example.com', md5('mreyes'), 'Maria', 'Luisa', 'Reyes', 3),
+('juan.mendoza@example.com', md5('jmendoza'), 'Juan', 'Rafael', 'Mendoza', 3),
+('ana.torres@example.com', md5('atorres'), 'Ana', 'Maria', 'Torres', 3),
+('carlos.ramos@example.com', md5('cramos'), 'Carlos', 'Miguel', 'Ramos', 3),
+('luisa.gomez@example.com', md5('lgomez'), 'Luisa', 'Andrea', 'Gomez', 3),
+('daniel.santos@example.com', md5('dsantos'), 'Daniel', 'Jose', 'Santos', 3),
+('patricia.delarosa@example.com', md5('pdelarosa'), 'Patricia', 'Luna', 'Dela Rosa', 3),
+('ricardo.morales@example.com', md5('rmorales'), 'Ricardo', 'Alonzo', 'Morales', 3),
+('isabel.cruz@example.com', md5('icruz'), 'Isabel', 'Clarisse', 'Cruz', 3),
+('pedro.valdez@example.com', md5('pvaldez'), 'Pedro', 'Luis', 'Valdez', 3),
+('sofia.rivera@example.com', md5('srivera'), 'Sofia', 'Raquel', 'Rivera', 3),
+('eduardo.flores@example.com', md5('eflores'), 'Eduardo', 'Miguel', 'Flores', 3),
+('carmen.alvarez@example.com', md5('calvares'), 'Carmen', 'Elaine', 'Alvarez', 3),
+('manuel.garcia@example.com', md5('mgarcia'), 'Manuel', 'Joaquin', 'Garcia', 3),
+('gloria.fernandez@example.com', md5('gfernandez'), 'Gloria', 'Camille', 'Fernandez', 3),
+('roberto.estrada@example.com', md5('restrada'), 'Roberto', 'Cristian', 'Estrada', 3),
+('angelica.hernandez@example.com', md5('ahernandez'), 'Angelica', 'Paula', 'Hernandez', 3),
+('miguel.bautista@example.com', md5('mbautista'), 'Miguel', 'Antonio', 'Bautista', 3),
+('rosa.monteverde@example.com', md5('rmonteverde'), 'Rosa', 'Inez', 'Monteverde', 3);
