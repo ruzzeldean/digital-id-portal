@@ -1,3 +1,4 @@
+// login script
 $(document).on('click', '#login-button', function() {
   let username = $("#username").val();
   let password = $("#password").val();
@@ -26,3 +27,37 @@ $(document).on('click', '#login-button', function() {
     })
   }
 })
+
+// Page title script
+$(document).ready(function () {
+  $("nav a").on("click", function () {
+    localStorage.setItem("lastClicked", this.id);
+  });
+
+  const lastClicked = localStorage.getItem("lastClicked");
+
+  if ($("#page-title").length && lastClicked) {
+    switch (lastClicked) {
+      case "dashboard-link":
+        $("#page-title").text("Dashboard");
+        break;
+      case "id-applications-link":
+        $("#page-title").text("ID Applications");
+        break;
+      case "admins-link":
+        $("#page-title").text("Admins");
+        break;
+      default:
+        $("#page-title").text("Page");
+    }
+  }
+});
+
+// Table script
+new DataTable('.table-list', {
+  layout: {
+      topStart: {
+          buttons: ['copy', 'excel', 'pdf', 'colvis']
+      }
+  }
+});
