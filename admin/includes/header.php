@@ -26,15 +26,15 @@
               </nav>
 
               <nav class="nav flex-column">
-                <a class="nav-link text-white text-nowrap" href="#">
+                <a class="nav-link text-white text-nowrap" href="./dashboard.php">
                   <i class="bi bi-speedometer"></i>
                   <span class="d-none d-sm-inline ms-2">Dashboard</span>
                 </a>
-                <a class="nav-link text-white text-nowrap" href="#">
+                <a class="nav-link text-white text-nowrap" href="./id-applications.php">
                   <i class="bi bi-person-vcard"></i>
-                  <span class="d-none d-sm-inline ms-2">Applications</span>
+                  <span class="d-none d-sm-inline ms-2">ID Applications</span>
                 </a>
-                <a class="nav-link text-white text-nowrap" href="#">
+                <a class="nav-link text-white text-nowrap" href="./admins.php">
                   <i class="bi bi-person-lines-fill"></i>
                   <span class="d-none d-sm-inline ms-2">Admins</span>
                 </a>
@@ -47,7 +47,7 @@
               <div class="container-fluid">
                 <ul class="navbar-nav">
                   <li>
-                    <h3 class="m-0">Dashboard</h3>
+                    <h3 id="page-title" class="m-0">Dashboard</h3>
                   </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
