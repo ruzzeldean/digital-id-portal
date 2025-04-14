@@ -1,3 +1,4 @@
+<?php include_once './includes/auth-check.php' ?>
 <?php include './includes/header.php'; ?>
 
             <main class="id-applications-main p-2">
