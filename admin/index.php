@@ -1,3 +1,10 @@
+<?php
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+
+  session_destroy();
+?>
 <?php include './includes/header-without-nav.php'; ?>
   
   <div class="wrapper">
