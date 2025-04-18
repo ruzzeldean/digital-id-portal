@@ -1,4 +1,4 @@
-// login script
+// Login script
 $(document).on('click', '#login-button', function() {
   let username = $("#username").val();
   let password = $("#password").val();
@@ -16,7 +16,6 @@ $(document).on('click', '#login-button', function() {
         password: password
       },
       success: function(response) {
-        console.log(response);
         if (response == "success") {
           alert("Access granted.");
           location.href="./dashboard.php";
@@ -61,3 +60,31 @@ new DataTable('.table-list', {
       }
   }
 });
+
+// Delete admin script
+$(document).on('click', '.delete-admin', function () {
+  let adminId = $(this).attr('admin-id');
+
+  $.ajax({
+    url: './delete-admin.php',
+    method: 'POST',
+    data: {
+      adminId: adminId
+    }, success: function(response) {
+      // Old style
+      /* alert(response);
+      location.reload(); */
+
+      // Hide delete confirmation modal
+      $('#deleteModal').modal('hide');
+
+      // Show success modal
+      $('#successModal').modal('show');
+
+      // Reload page after closing the success modal
+      $('#successModal').on('hidden.bs.modal', function () {
+        location.reload();
+      })
+    }
+  })
+})
