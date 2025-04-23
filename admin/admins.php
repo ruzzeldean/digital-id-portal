@@ -8,7 +8,7 @@
                 <table class="table-list table table-striped table-hover" style="width:100%">
                   <thead>
                     <tr class="text-nowrap">
-                      <th class="text-start">Admin ID</th>
+                      <th class="text-start">ID</th>
                       <th>Username</th>
                       <th>Password</th>
                       <th>First Name</th>
@@ -27,17 +27,17 @@
                       include '../connection/connection.php'; 
 
                       $qry = mysqli_query($con, 
-                      "SELECT admins.*, roles.*
+                      "SELECT roles.*, admins.*
                       FROM admins
                       JOIN roles
-                      ON admins.role_id = roles.role_id");
+                      ON admins.role_id = roles.id");
 
                       while ($row = mysqli_fetch_array($qry)) {
                     ?>
 
                       <tr class="text-nowrap">
                         <td class="text-start">
-                          <?php echo $row['admin_id']; ?>
+                          <?php echo $row['id']; ?>
                         </td>
                         <td>
                           <?php echo $row['username']; ?>
@@ -58,7 +58,7 @@
                           <?php echo $row['role_id']; ?>
                         </td>
                         <td>
-                          <?php echo $row['role_name']; ?>
+                          <?php echo $row['role']; ?>
                         </td>
                         <td class="text-start">
                           <?php echo $row['created_at']; ?>
@@ -111,7 +111,7 @@
                                   <!-- Real delete button -->
                                   <button type="button"
                                   class="delete-admin btn btn-danger"
-                                  admin-id="<?php echo $row['admin_id']; ?>">Continue</button>
+                                  id="<?php echo $row['id']; ?>">Continue</button>
                                 </div>
                               </div>
                             </div>

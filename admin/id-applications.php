@@ -6,16 +6,17 @@
                 <table class="table-list table table-striped table-hover" style="width:100%">
                   <thead>
                     <tr class="text-nowrap">
-                      <th class="text-start">Application ID</th>
+                      <th class="text-start">ID</th>
                       <th>First Name</th>
                       <th>Middle Name</th>
                       <th>Last Name</th>
                       <th class="text-start">Date of Birth</th>
-                      <th>Address Line 1</th>
-                      <th>Address Line 2</th>
+                      <th>Street Address</th>
+                      <th>Barangay</th>
                       <th>City</th>
                       <th>Province</th>
                       <th class="text-start">Zip Code</th>
+                      <th>Region</th>
                       <th>Photo Path</th>
                       <th>Status</th>
                       <th class="text-start">Submitted At</th>
@@ -28,17 +29,17 @@
                       include '../connection/connection.php'; 
 
                       $qry = mysqli_query($con, 
-                      "SELECT citizens.*, digital_id_applications.*
+                      "SELECT citizens.*, id_applications.*
                       FROM citizens
-                      JOIN digital_id_applications
-                      ON citizens.citizen_id = digital_id_applications.citizen_id;");
+                      JOIN id_applications
+                      ON citizens.id = id_applications.id;");
 
                       while ($row = mysqli_fetch_array($qry)) {
                     ?>
 
                       <tr class="text-nowrap">
                         <td class="text-start">
-                          <?php echo $row['application_id']; ?>
+                          <?php echo $row['id']; ?>
                         </td>
                         <td>
                           <?php echo $row['first_name']; ?>
@@ -53,10 +54,10 @@
                           <?php echo $row['date_of_birth']; ?>
                         </td>
                         <td>
-                          <?php echo $row['address_line1']; ?>
+                          <?php echo $row['street_address']; ?>
                         </td>
                         <td>
-                          <?php echo $row['address_line2']; ?>
+                          <?php echo $row['barangay']; ?>
                         </td>
                         <td>
                           <?php echo $row['city']; ?>
@@ -66,6 +67,9 @@
                         </td>
                         <td class="text-start">
                           <?php echo $row['zip_code']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['region']; ?>
                         </td>
                         <td>
                           <?php echo $row['photo_path']; ?>
