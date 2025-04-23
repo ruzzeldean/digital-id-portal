@@ -34,13 +34,13 @@ new DataTable('.table-list', {
 
 // Delete admin script
 $(document).on('click', '.delete-admin', function () {
-  let adminId = $(this).attr('admin-id');
+  let id = $(this).attr('id');
 
   $.ajax({
     url: './delete-admin.php',
     method: 'POST',
     data: {
-      adminId: adminId
+      id: id
     }, success: function(response) {
       // Old style
       /* alert(response);

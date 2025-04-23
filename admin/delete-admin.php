@@ -1,12 +1,12 @@
 <?php 
-  if (isset($_POST['adminId'])) {
-    $adminId = $_POST['adminId'];
+  if (isset($_POST['id'])) {
+    $id = $_POST['id'];
 
     include '../connection/connection.php';
 
     $qryDelete = mysqli_query($con,
     "DELETE FROM admins
-    WHERE admin_id = '$adminId'");
+    WHERE id = '$id'");
 
     if ($qryDelete) {
       echo "An admin was successfully removed.";
