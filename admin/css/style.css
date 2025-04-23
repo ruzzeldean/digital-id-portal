@@ -12,6 +12,11 @@
 }
 
 .login-form {
-  width: 80%;
+  width: 100%;
   max-width: 21.875rem;
+}
+
+.add-admin-form {
+  width: 100%;
+  max-width: 31.25rem;
 }
