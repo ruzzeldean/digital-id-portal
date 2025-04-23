@@ -2,7 +2,11 @@
 <?php include './includes/header.php'; ?>
 
             <main class="id-applications-main p-2">
-              <button type="button" class="btn btn-primary">Add Admin</button>
+              <button type="button" class="btn btn-primary" 
+              onclick="location.href='./add-admin.php'">
+                <i class="bi bi-person-fill-add"></i>
+                Add Admin
+              </button>
 
               <div class="table-responsive">
                 <table class="table-list table table-striped table-hover" style="width:100%">
