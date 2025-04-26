@@ -28,12 +28,12 @@
                 <input class="form-control mb-3" type="text" name="last-name" id="last-name" placeholder="Last Name">
 
                 <select class="form-select mb-3" name="role" id="role">
-                  <option selected disabled>Role</option>
+                  <option value="" selected disabled>Role</option>
                   <option value="1">Super Admin</option>
                   <option value="2">Admin</option>
                 </select>
 
-                <button class="btn btn-primary mt-3" type="button">
+                <button id="add-admin-button" class="btn btn-primary mt-3" type="button">
                   <i class="bi bi-person-fill-add pe-1"></i>
                   Add New Admin
                 </button>
