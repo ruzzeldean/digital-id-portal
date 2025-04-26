@@ -32,14 +32,14 @@
                       "SELECT citizens.*, id_applications.*
                       FROM citizens
                       JOIN id_applications
-                      ON citizens.id = id_applications.id;");
+                      ON citizens.citizen_id = id_applications.citizen_id;");
 
                       while ($row = mysqli_fetch_array($qry)) {
                     ?>
 
                       <tr class="text-nowrap">
                         <td class="text-start">
-                          <?php echo $row['id']; ?>
+                          <?php echo $row['application_id']; ?>
                         </td>
                         <td>
                           <?php echo $row['first_name']; ?>
