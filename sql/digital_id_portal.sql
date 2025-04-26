@@ -4,13 +4,13 @@ USE digital_id_portal;
 
 -- create roles table
 CREATE TABLE roles (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  role_id INT AUTO_INCREMENT PRIMARY KEY,
   role VARCHAR(50) NOT NULL
 );
 
 -- create admins table
 CREATE TABLE admins (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  admin_id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   first_name VARCHAR(100) NOT NULL,
@@ -19,14 +19,14 @@ CREATE TABLE admins (
   role_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (role_id) REFERENCES roles(id)
+  FOREIGN KEY (role_id) REFERENCES roles(role_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
 
 -- create citizens table
 CREATE TABLE citizens (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  citizen_id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   first_name VARCHAR(100) NOT NULL,
@@ -35,14 +35,14 @@ CREATE TABLE citizens (
   role_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (role_id) REFERENCES roles(id)
+  FOREIGN KEY (role_id) REFERENCES roles(role_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
 
 -- create id_applications table
 CREATE TABLE id_applications (
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  application_id INT AUTO_INCREMENT PRIMARY KEY,
   citizen_id INT NOT NULL,
   date_of_birth DATE NOT NULL,
   street_address VARCHAR(255) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE id_applications (
   photo_path VARCHAR(255),
   status VARCHAR(50) DEFAULT 'pending',
   submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (citizen_id) REFERENCES citizens(id)
+  FOREIGN KEY (citizen_id) REFERENCES citizens(citizen_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
