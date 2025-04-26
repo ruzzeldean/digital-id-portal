@@ -31,17 +31,17 @@
                       include '../connection/connection.php'; 
 
                       $qry = mysqli_query($con, 
-                      "SELECT roles.*, admins.*
+                      "SELECT admins.*, roles.*
                       FROM admins
                       JOIN roles
-                      ON admins.role_id = roles.id");
+                      ON admins.role_id = roles.role_id");
 
                       while ($row = mysqli_fetch_array($qry)) {
                     ?>
 
                       <tr class="text-nowrap">
                         <td class="text-start">
-                          <?php echo $row['id']; ?>
+                          <?php echo $row['admin_id']; ?>
                         </td>
                         <td>
                           <?php echo $row['username']; ?>
@@ -71,7 +71,7 @@
                           <?php echo $row['updated_at']; ?>
                         </td>
                         <td>
-                          <button class="btn btn-secondary">Edit</button>
+                          <a href="edit-admin.php?id=<?php echo $row['admin_id']; ?>" class="edit-admin-button btn btn-secondary" role="button">Edit</a>
 
                           <!-- Button to trigger delete confirmation modal -->
                           <button class="confirm-delete btn btn-danger" 
@@ -115,7 +115,7 @@
                                   <!-- Real delete button -->
                                   <button type="button"
                                   class="delete-admin btn btn-danger"
-                                  id="<?php echo $row['id']; ?>">Continue</button>
+                                  admin-id="<?php echo $row['admin_id']; ?>">Continue</button>
                                 </div>
                               </div>
                             </div>
