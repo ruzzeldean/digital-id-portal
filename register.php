@@ -13,10 +13,10 @@
     <header>
       <div class="container">
         <nav class="navbar">
-          <div class="container-fluid">
+          <div class="container-fluid px-0">
             <a class="navbar-brand" href="./">Digital ID Portal</a>
 
-            <ul class="navbar-nav pe-3">
+            <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="./">
                   <i class="bi bi-house"></i>
@@ -28,7 +28,7 @@
         </nav>
       </div>
     </header>
-    <main class="main-form main-form d-flex justify-content-center align-items-center p-3 py-5 py-sm-3">
+    <main class="main-form d-flex justify-content-center align-items-center p-3 py-5 py-sm-3">
     <div class="register-form bg-light border shadow rounded d-flex flex-column p-4">
         <h1 class="h1 mb-1">Register</h1>
         <p class="mb-4">for new user</p>
@@ -73,10 +73,12 @@
           Register
           <i class="bi bi-person-plus ms-1 d-inline-block align-text-top"></i>
         </button>
-        <p class="text-center mb-2">Already have an account? <a href="./log-in.php">Log in</a></p>
+        <p class="text-center mb-2">Already have an account? <a href="./login.php">Log in</a></p>
       </div>
     </main>
   </div>
+  <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>

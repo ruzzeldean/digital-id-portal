@@ -13,7 +13,7 @@
     <header>
       <div class="container">
         <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
+          <div class="container-fluid px-0">
             <a class="navbar-brand" href="./">Digital ID Portal</a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-controls="navMenu" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <ul class="navbar-nav justify-content-end flex-grow-1">
                   <li class="nav-item">
                     <a class="nav-link" href="#">Home</a>
                   </li>
@@ -36,7 +36,7 @@
                     <a class="nav-link" href="#">How to Apply?</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="./log-in.php">Login / Register</a>
+                    <a class="nav-link" href="./login.php">Login / Register</a>
                   </li>
                 </ul>
               </div>
@@ -56,6 +56,7 @@
       </div>
     </footer>
   </div>
+  <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/bootstrap.bundle.min.js"></script>
   <script src="./js/script.js"></script>
 </body>
