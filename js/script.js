@@ -125,27 +125,31 @@ $(document).on('click', '#id-application-button', () => {
 });
 
 // Script for application-status
-$.ajax({
-  url: './application-status.php',
-  method: 'GET',
-  success: (response) => {
-   if (response === 'Application still in review.') {
-    $('#application-status')
-      .text(response)
-      .addClass('alert-info');
-   } else if (response === 'Application approved.') {
-    $('#application-status')
-      .text(response)
-      .addClass('alert-success');
-   } else if (response === 'Application rejected.') {
-    $('#application-status')
-      .text(response)
-      .addClass('alert-danger')
-   } else {
-    $('#application-status')
-      .text(response)
-      .addClass('alert-secondary');
-    $('.register-form').removeClass('d-none');
-   }
-  }
-});
+const page = $('body').data('page');
+if (page === 'my-digital-id') {
+  $.ajax({
+    url: './application-status.php',
+    method: 'GET',
+    success: (response) => {
+     if (response === 'Application still in review.') {
+      $('#application-status')
+        .text(response)
+        .addClass('alert-info');
+     } else if (response === 'Application approved.') {
+      $('#application-status')
+        .text(response)
+        .addClass('alert-success');
+     } else if (response === 'Application rejected.') {
+      $('#application-status')
+        .text(response)
+        .addClass('alert-danger')
+     } else {
+      $('#application-status')
+        .text(response)
+        .addClass('alert-secondary');
+      $('.register-form').removeClass('d-none');
+     }
+    }
+  });
+}
+

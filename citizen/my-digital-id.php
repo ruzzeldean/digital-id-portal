@@ -25,7 +25,7 @@ $lastName = $_SESSION['lastName'];
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body data-page="my-digital-id">
   <div class="wrapper">
     <header>
       <div class="container">
