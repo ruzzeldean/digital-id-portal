@@ -124,28 +124,28 @@ $(document).on('click', '#id-application-button', () => {
   }
 });
 
-$(document).ready(function() {
-  $.ajax({
-    url: './check-application-status.php',
-    method: 'GET',
-    dataType: 'json',
-    success: function(response) {
-      if (response.status === 'not_applied') {
-        $('#status-message').addClass('d-none');
-        $('#application-form').show();
-      } else {
-        $('#status-message')
-          .removeClass('d-none')
-          .addClass('alert-warning')
-          .text("Your ID application is " + response.status + ".");
-        $('#application-form').hide();
-      }
-    },
-    error: function() {
-      $('#status-message')
-        .removeClass('d-none')
-        .addClass('alert-danger')
-        .text("Error checking application status.");
-    }
-  });
+// Script for application-status
+$.ajax({
+  url: './application-status.php',
+  method: 'GET',
+  success: (response) => {
+   if (response === 'Application still in review.') {
+    $('#application-status')
+      .text(response)
+      .addClass('alert-info');
+   } else if (response === 'Application approved.') {
+    $('#application-status')
+      .text(response)
+      .addClass('alert-success');
+   } else if (response === 'Application rejected.') {
+    $('#application-status')
+      .text(response)
+      .addClass('alert-danger')
+   } else {
+    $('#application-status')
+      .text(response)
+      .addClass('alert-secondary');
+    $('.register-form').removeClass('d-none');
+   }
+  }
 });
