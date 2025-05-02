@@ -67,10 +67,10 @@ $lastName = $_SESSION['lastName'];
       </div>
     </header>
 
-    <main class="d-flex justify-content-center align-items-center px-2 py-4 px-lg-0">
-      <div id="status-message" class="alert alert-info d-none"></div>
-      <div id="application-form">
-        <div class="register-form border shadow rounded px-3 py-4 px-sm-4">
+    <main class="d-flex flex-column justify-content-center align-items-center px-2 py-4 px-lg-0">
+        <div id="application-status" class="alert" style="width: 100%; max-width: 37.5rem;"></div>
+
+        <div class="register-form d-none border shadow rounded px-3 py-4 px-sm-4">
           <h3 class="mb-4">ID Application</h3>
 
           <div class="personal-info-section">
@@ -157,7 +157,7 @@ $lastName = $_SESSION['lastName'];
             <button id="id-application-button" class="btn btn-primary w-100">Submit</button>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </main>
 
     <footer>
