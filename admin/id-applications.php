@@ -81,8 +81,9 @@
                           <?php echo $row['submitted_at']; ?>
                         </td>
                         <td>
-                          <button class="btn btn-primary">Approve</button>
-                          <button class="btn btn-danger">Reject</button>
+                          <button id="approve-button" class="btn btn-primary" type="button" approve-id="<?php echo $row['application_id']; ?>">Approve</button>
+                          
+                          <button id="reject-button" class="btn btn-danger" reject-id="<?php echo $row['application_id']; ?>">Reject</button>
                         </td>
                       </tr>
                     <?php } ?>

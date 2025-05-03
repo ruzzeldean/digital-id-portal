@@ -32,6 +32,42 @@ new DataTable('.table-list', {
   }
 });
 
+// Script for approving ID application
+$(document).on('click', '#approve-button', function () {
+  if (confirm("Aprrove this application?")) {
+    const approveID = $(this).attr('approve-id');
+    $.ajax({
+      url: './approve.php',
+      method: 'POST',
+      data: {
+        approveID: approveID
+      },
+      success: (response) => {
+        alert(response);
+        location.reload();
+      }
+    });
+  }
+});
+
+// Script for rejecting ID application
+$(document).on('click', '#reject-button', function () {
+  if (confirm("Reject this application?")) {
+    const rejectID = $(this).attr('reject-id');
+    $.ajax({
+      url: './reject.php',
+      method: 'POST',
+      data: {
+        rejectID: rejectID
+      },
+      success: (response) => {
+        alert(response);
+        location.reload();
+      }
+    });
+  }
+});
+
 // Script for adding new admin
 $(document).on('click', '#add-admin-button', () => {
   const username = $("#username").val();
