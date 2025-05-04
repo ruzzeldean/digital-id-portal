@@ -16,6 +16,8 @@ A citizen (user) must create an account first.
 ![Citizen Account Log in](./src/citizen-account-login.png)
 The citizen can then log in after account registration.
 
+<br>
+
 ### ID Application (`My Digital ID` page)
 
 ![ID Application](./src/id-application.png)
