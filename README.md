@@ -9,6 +9,8 @@ A super lame school project made in PHP.
 ![Citizen Account Registration](./src/citizen-account-registration.png)
 A citizen (user) must create an account first.
 
+<br>
+
 ### Citizen Account Log in
 
 ![Citizen Account Log in](./src/citizen-account-login.png)
@@ -18,6 +20,8 @@ The citizen can then log in after account registration.
 
 ![ID Application](./src/id-application.png)
 On this page, this is where the citizen can fill out the ID Application form.
+
+<br>
 
 ### After application response
 
@@ -35,11 +39,15 @@ The application will then be saved to the database, and will be review by the ad
 ![Admin Log in](./src/admin-login.png)
 Log in page for admin.
 
+<br>
+
 ### 
 
 ![ID Application page (admin side-1)](./src/id-application-admin-side-1.png)
 ![ID Application page (admin side-2)](./src/id-application-admin-side-2.png)
 This is where the admin can review the ID applications.
+
+<br>
 
 If the application is approved, it will simply change the status, alert success message, reload the page, and will return approve message to the citizen account.
 
