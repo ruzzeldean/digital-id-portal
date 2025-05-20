@@ -8,7 +8,29 @@ if (!isset($_SESSION['gatepass'])) {
   exit;
 }
 
+if (!isset($_GET['id'])) {
+  echo "Intruder!";
+  exit;
+}
+
+$citizenId = $_GET['id'];
+
 include_once '../connection/connection.php';
+
+$qry = mysqli_query(
+  $con,
+  "SELECT * FROM citizens
+  WHERE citizen_id = '$citizenId'"
+);
+
+$row = mysqli_fetch_array($qry);
+
+$email = $row['email'];
+$password = $row['password'];
+$firstName = $row['first_name'];
+$middleName = $row['middle_name'];
+$lastName = $row['last_name'];
+$role = $row['role_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,13 +45,15 @@ include_once '../connection/connection.php';
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../assets/adminlte/css/adminlte.min.css">
   <!-- Custom css -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
-
-<!-- modified -->
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -75,31 +99,8 @@ include_once '../connection/connection.php';
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Active Page</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Inactive Page</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
             <li class="nav-item">
-              <a href="./dashboard.php" class="nav-link active">
+              <a href="./dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -115,7 +116,7 @@ include_once '../connection/connection.php';
               </a>
             </li>
             <li class="nav-item">
-              <a href="./citizens.php" class="nav-link">
+              <a href="./citizens.php" class="nav-link active">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Citizens
@@ -152,7 +153,7 @@ include_once '../connection/connection.php';
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0">Edit Citizen</h1>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -161,97 +162,62 @@ include_once '../connection/connection.php';
 
       <!-- Main content -->
       <div class="content">
-        <div class="container-fluid">
-          <!-- Info boxes -->
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hourglass-half"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Pending</span>
-                  <span class="info-box-number">
-                    <?php
-                    $sql = "SELECT COUNT(*) AS total FROM id_applications WHERE status = 'pending'";
-                    $result = mysqli_query($con, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    echo $row['total'];
-                  ?>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
+        <div class="container-fluid pb-1">
+          <div id="admin-form" class="card">
+            <div class="card-header">
+              <a class="btn btn-secondary" href="citizens.php">Cancel</a>
             </div>
-            <!-- /.col -->
-
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check-circle"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Approved</span>
-                  <span class="info-box-number">
-                    <?php
-                    $sql = "SELECT COUNT(*) AS total FROM id_applications WHERE status = 'approved'";
-                    $result = mysqli_query($con, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    echo $row['total'];
-                  ?>
-                  </span>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label for="email" class="form-label">Email</label>
+                  <input class="form-control" type="email" name="email" id="email" placeholder="Email"
+                    value="<?php echo $email; ?>">
                 </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
 
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-times-circle"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Rejected</span>
-                  <span class="info-box-number">
-                    <?php
-                    $sql = "SELECT COUNT(*) AS total FROM id_applications WHERE status = 'rejected'";
-                    $result = mysqli_query($con, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    echo $row['total'];
-                  ?>
-                  </span>
+                <div class="form-group col-md-6">
+                  <label for="password" class="form-label">Password</label>
+                  <input class="form-control" type="password" name="password" id="password" placeholder="Password"
+                    value="<?php echo $password; ?>">
                 </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-users"></i></span>
 
-                <div class="info-box-content">
-                  <span class="info-box-text">Citizen Accounts</span>
-                  <span class="info-box-number">
-                    <?php
-                    $sql = "SELECT COUNT(*) AS total FROM citizens";
-                    $result = mysqli_query($con, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    echo $row['total'];
-                  ?>
-                  </span>
+                <div class="form-group col-md-6">
+                  <label for="confirm-password" class="form-label">Confirm Password</label>
+                  <input class="form-control" type="password" name="confirm-password" id="confirm-password"
+                    placeholder="Confirm Password" value="<?php echo $password; ?>">
                 </div>
-                <!-- /.info-box-content -->
+
+                <div class="form-group col-12">
+                  <label for="first-name" class="form-label">First Name</label>
+                  <input class="form-control" type="text" name="first-name" id="first-name" placeholder="First Name"
+                    value="<?php echo $firstName; ?>">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="middle-name" class="form-label">Middle Name</label>
+                  <input class="form-control" type="text" name="middle-name" id="middle-name" placeholder="Middle Name"
+                    value="<?php echo $middleName; ?>">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="last-name" class="form-label">Last Name</label>
+                  <input class="form-control" type="text" name="last-name" id="last-name" placeholder="Last Name"
+                    value="<?php echo $lastName; ?>">
+                </div>
+
+                <div class="form-group pt-3 col">
+                  <div id="edit-citizen-button" class="btn btn-primary" edit-id="<?php echo $citizenId; ?>">Save Changes
+                  </div>
+                </div>
               </div>
-              <!-- /.info-box -->
+              <!-- /.row -->
             </div>
-            <!-- /.col -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.row -->
-        </div> <!-- /.container-fluid -->
+          <!-- /.card -->
+        </div>
+        <!-- /.container-fluid -->
       </div>
       <!-- /.content -->
     </div>
@@ -273,10 +239,25 @@ include_once '../connection/connection.php';
 
   <!-- jQuery -->
   <script src="../assets/js/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
+  <!-- Bootstrap 5 -->
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables & Plugins -->
+  <script src="../assets/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="../assets/adminlte/plugins/jszip/jszip.min.js"></script>
+  <script src="../assets/adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="../assets/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
   <!-- AdminLTE App -->
   <script src="../assets/adminlte/js/adminlte.min.js"></script>
+  <!-- Custom CSS -->
+  <script src="./js/script.js"></script>
 </body>
 
 </html>

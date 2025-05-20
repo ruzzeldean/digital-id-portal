@@ -11,11 +11,15 @@
     AND password = '$password'");
 
     if (mysqli_num_rows($query) > 0) {
+      $row = mysqli_fetch_assoc($query);
+
       if (session_status() == PHP_SESSION_NONE) {
         session_start();
       }
 
       $_SESSION['gatepass'] = "admin";
+      $_SESSION['firstName'] = $row['first_name'];
+      $_SESSION['lastName'] = $row['last_name'];
 
       echo "success";
     } else {

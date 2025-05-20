@@ -1,42 +1,244 @@
-<?php include_once './includes/auth-check.php'; ?>
-<?php include './includes/header.php'; ?>
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 
-            <main class="id-applications-main p-2">
-              <button type="button" class="btn btn-primary mb-3" 
-              onclick="location.href='./admins.php'">
-                <i class="bi bi-arrow-return-left pe-1"></i>
-                Back
-              </button>
+if (!isset($_SESSION['gatepass'])) {
+  header("Location: ./");
+  exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-              <div class="add-admin-form d-flex flex-wrap px-3 py-4 rounded shadow-lg">
-                <h1 class="fs-2 pb-3">Add New Admin</h1>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin | Digtal ID Portal</title>
 
-                <div class="d-flex flex-wrap flex-md-nowrap flex-grow-1">
-                  <input class="form-control mb-3 me-md-2" type="text" name="username" id="username" placeholder="Username">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="../assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../assets/adminlte/css/adminlte.min.css">
+  <!-- Custom css -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
 
-                  <input class="form-control mb-3 ms-md-2" type="password" name="password" id="password" placeholder="Password">
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="./dashboard.php" class="brand-link">
+        <img src="../assets/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo"
+          class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="info">
+            <a href="#" class="d-block"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?></a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="./dashboard.php" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./id-applications.php" class="nav-link">
+                <i class="nav-icon fas fa-id-card"></i>
+                <p>
+                  ID Applications
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./citizens.php" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Citizens
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./admins.php" class="nav-link active">
+                <i class="nav-icon fas fa-user-shield"></i>
+                <p>
+                  Admins
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./" class="nav-link">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Logout
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col">
+              <h1 class="m-0">Add Admin</h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid pb-1">
+              <div id="admin-form" class="card">
+                <div class="card-header">
+                  <a class="btn btn-secondary" href="admins.php">Back</a>
                 </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="username" class="form-label">Username</label>
+                      <input class="form-control" type="text" name="username" id="username" placeholder="Username">
+                    </div>
 
-                <input class="form-control mb-3" type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password">
+                    <div class="form-group col-md-6">
+                      <label for="password" class="form-label">Password</label>
+                      <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                    </div>
 
-                <div class="d-flex flex-wrap flex-md-nowrap flex-grow-1">
-                  <input class="form-control mb-3 me-md-2" type="text" name="first-name" id="first-name" placeholder="First Name">
+                    <div class="form-group col-md-6">
+                      <label for="confirm-password" class="form-label">Confirm Password</label>
+                      <input class="form-control" type="password" name="confirm-password" id="confirm-password"
+                        placeholder="Confirm Password">
+                    </div>
 
-                  <input class="form-control mb-3 ms-md-2" type="text" name="middle-name" id="middle-name" placeholder="Middle Name">
+                    <div class="form-group col-md-6">
+                      <label for="first-name" class="form-label">First Name</label>
+                      <input class="form-control" type="text" name="first-name" id="first-name"
+                        placeholder="First Name">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="middle-name" class="form-label">Middle Name</label>
+                      <input class="form-control" type="text" name="middle-name" id="middle-name"
+                        placeholder="Middle Name">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="last-name" class="form-label">Last Name</label>
+                      <input class="form-control" type="text" name="last-name" id="last-name" placeholder="Last Name">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="role" class="form-label">Role</label>
+                      <select class="custom-select" name="role" id="role">
+                        <option value="" selected disabled>Role</option>
+                        <option value="1">Super Admin</option>
+                        <option value="2">Admin</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group pt-3 col-12">
+                      <div id="add-admin-button" class="btn btn-primary">Submit</div>
+                    </div>
+                  </div>
+                  <!-- /. row -->
                 </div>
-
-                <input class="form-control mb-3" type="text" name="last-name" id="last-name" placeholder="Last Name">
-
-                <select class="form-select mb-3" name="role" id="role">
-                  <option value="" selected disabled>Role</option>
-                  <option value="1">Super Admin</option>
-                  <option value="2">Admin</option>
-                </select>
-
-                <button id="add-admin-button" class="btn btn-primary mt-3" type="button">
-                  <i class="bi bi-person-fill-add pe-1"></i>
-                  Add New Admin
-                </button>
+                <!-- /.card-body -->
               </div>
-            </main>
-<?php include './includes/footer.php'; ?>
+              <!-- /.card -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- To the right -->
+      <div class="float-right d-none d-sm-inline">
+        All content is for learning and demonstration purposes.
+      </div>
+      <!-- Default to the left -->
+      <strong>&copy; 2025.</strong> For educational purposes.
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <!-- Bootstrap 5 -->
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables & Plugins -->
+  <script src="../assets/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="../assets/adminlte/plugins/jszip/jszip.min.js"></script>
+  <script src="../assets/adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="../assets/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="../assets/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../assets/adminlte/js/adminlte.min.js"></script>
+  <!-- Custom CSS -->
+  <script src="./js/script.js"></script>
+</body>
+
+</html>

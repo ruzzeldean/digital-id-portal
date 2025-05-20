@@ -17,8 +17,7 @@ if (!isset($_SESSION['gatepass'])) {
   <title>Admin | Digtal ID Portal</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../assets/adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- DataTables -->
@@ -58,8 +57,7 @@ if (!isset($_SESSION['gatepass'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="./dashboard.php" class="brand-link">
-        <img src="../assets/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo"
-          class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="../assets/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Admin</span>
       </a>
 
@@ -84,7 +82,7 @@ if (!isset($_SESSION['gatepass'])) {
               </a>
             </li>
             <li class="nav-item">
-              <a href="./id-applications.php" class="nav-link active">
+              <a href="./id-applications.php" class="nav-link">
                 <i class="nav-icon fas fa-id-card"></i>
                 <p>
                   ID Applications
@@ -92,7 +90,7 @@ if (!isset($_SESSION['gatepass'])) {
               </a>
             </li>
             <li class="nav-item">
-              <a href="./citizens.php" class="nav-link">
+              <a href="./citizens.php" class="nav-link active">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Citizens
@@ -129,7 +127,7 @@ if (!isset($_SESSION['gatepass'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col">
-              <h1 class="m-0">ID Applications</h1>
+              <h1 class="m-0">Citizens</h1>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -142,38 +140,19 @@ if (!isset($_SESSION['gatepass'])) {
           <div class="row">
             <div class="col-12">
               <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">ID Applications</h3>
-                </div>
-                <!-- /.card-header -->
                 <div class="card-body">
-                  <div class="mb-3">
-                    <label for="statusFilter" class="form-label">Filter by Status: &nbsp;</label>
-                    <select id="statusFilter" class="custom-select w-auto d-inline-block">
-                      <option value="">All</option>
-                      <option value="pending">Pending</option>
-                      <option value="approved">Approved</option>
-                      <option value="rejected">Rejected</option>
-                    </select>
-                  </div>
                   <div class="table-responsive">
                     <table class="table-list table table-bordered table-striped table-hover">
                       <thead>
                         <tr class="text-nowrap">
-                          <th>Application ID</th>
+                          <th>Citizen ID</th>
+                          <th>Email</th>
+                          <th>Password</th>
                           <th>First Name</th>
                           <th>Middle Name</th>
                           <th>Last Name</th>
-                          <th>Date of Birth</th>
-                          <th>Street Address</th>
-                          <th>Barangay</th>
-                          <th>City</th>
-                          <th>Province</th>
-                          <th>Zip Code</th>
-                          <th>Region</th>
-                          <th>Photo Path</th>
-                          <th>Status</th>
-                          <th>Submitted At</th>
+                          <th>Created At</th>
+                          <th>Updated At</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -183,35 +162,26 @@ if (!isset($_SESSION['gatepass'])) {
 
                         $qry = mysqli_query(
                           $con,
-                          "SELECT citizens.*, id_applications.*
-                            FROM citizens
-                            JOIN id_applications
-                            ON citizens.citizen_id = id_applications.citizen_id"
+                          "SELECT * FROM citizens"
                         );
 
                         while ($row = mysqli_fetch_array($qry)) {
                         ?>
-                        <tr class="text-nowrap">
-                          <td><?php echo $row['application_id']; ?></td>
-                          <td><?php echo $row['first_name']; ?></td>
-                          <td><?php echo $row['middle_name']; ?></td>
-                          <td><?php echo $row['last_name']; ?></td>
-                          <td><?php echo $row['date_of_birth']; ?></td>
-                          <td><?php echo $row['street_address']; ?></td>
-                          <td><?php echo $row['barangay']; ?></td>
-                          <td><?php echo $row['city']; ?></td>
-                          <td><?php echo $row['province']; ?></td>
-                          <td><?php echo $row['zip_code']; ?></td>
-                          <td><?php echo $row['region']; ?></td>
-                          <td><?php echo $row['photo_path']; ?></td>
-                          <td><?php echo $row['status']; ?></td>
-                          <td><?php echo $row['submitted_at']; ?></td>
-                          <td>
-                            <button id="approve-button" class="btn btn-primary" type="button" approve-id="<?php echo $row['application_id']; ?>">Approve</button>
-
-                            <button id="reject-button" class="btn btn-danger" reject-id="<?php echo $row['application_id'] ?>">Reject</button>
-                          </td>
-                        </tr>
+                          <tr class="text-nowrap">
+                            <td><?php echo $row['citizen_id']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['password']; ?></td>
+                            <td><?php echo $row['first_name']; ?></td>
+                            <td><?php echo $row['middle_name']; ?></td>
+                            <td><?php echo $row['last_name']; ?></td>
+                            <td><?php echo $row['created_at']; ?></td>
+                            <td><?php echo $row['updated_at']; ?></td>
+                            <td>
+                              <a class="btn btn-primary" href="edit-citizen.php?id=<?php echo $row['citizen_id']; ?>">Edit</a>
+                              
+                              <button class="delete-citizen-button btn btn-danger" citizen-id="<?php echo $row['citizen_id']; ?>">Delete</button>
+                            </td>
+                          </tr>
                         <?php } ?>
                       </tbody>
                     </table>

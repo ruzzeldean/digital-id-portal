@@ -1,7 +1,7 @@
 <?php
   if (isset($_POST['rejectID'])) {
     $rejectID = $_POST['rejectID'];
-    $applicationStatus = 'reject';
+    $applicationStatus = 'rejected';
 
     include '../connection/connection.php';
 

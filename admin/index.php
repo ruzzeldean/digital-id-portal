@@ -13,11 +13,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin | Digital ID Portal</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../assets/css/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
   <div class="wrapper">
-    <main class="main-form d-flex justify-content-center align-items-center">
+    <main class="main-form d-flex justify-content-center align-items-center px-3 px-sm-0">
       <div class="login-form bg-light shadow rounded d-flex flex-column p-4">
         <h1 class="mb-4">Login</h1>
 
@@ -30,7 +30,7 @@
     </main>
   </div>
 
-  <script src="../assets/js/jquery.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <script>
     // Login script
